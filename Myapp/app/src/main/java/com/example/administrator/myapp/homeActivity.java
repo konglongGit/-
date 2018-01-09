@@ -25,7 +25,6 @@ public class homeActivity extends Activity implements OnClickListener {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        //哎呀Git
         initView();
     }
 
