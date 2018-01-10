@@ -53,36 +53,36 @@ public class homeActivity extends Activity implements OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            //�ж��Ƿ�������
             case R.id.llincome:
                 Log.i("test", "aaa");
                 Intent intentIncmoe = new Intent(homeActivity.this,ListActivity.class);
                 startActivity(intentIncmoe);
 
                 break;
-            //֧��
+
             case R.id.lloutcome:
                 Intent intent1 = new Intent(homeActivity.this,MainActivity.class);
                 startActivity(intent1);
 
                 break;
-            //��֧�б�
+
             case R.id.lllist:
 
 
                 break;
-            //�������
+
             case R.id.llsetting:
 
 
                 break;
-            //�A���б�
+
             case R.id.llfenlei:
 
                 break;
-            //����A��
-            case R.id.llmodle:
 
+            case R.id.llmodle:
+                Intent intent2 = new Intent(homeActivity.this,AddTabelActivity.class);
+                startActivity(intent2);
                 break;
             //��֧ͼ��
 		/*case R.id.lltubiao:

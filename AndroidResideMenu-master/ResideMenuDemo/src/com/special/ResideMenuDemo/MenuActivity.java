@@ -10,8 +10,21 @@ import android.widget.Toast;
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 
-public class MenuActivity extends FragmentActivity implements View.OnClickListener{
-
+public class MenuActivity extends FragmentActivity implements View.OnClickListener {
+    /*
+    *fragmentactivity 继承自activity，用来解决android3.0
+    * 之前没有fragment的api，所以在使用的时候需要导入support包，
+    * 同时继承fragmentActivity，这样在activity中就能嵌入fragment来实现你想要的布局效果。
+    *当然3.0之后你就可以直接继承自Activity，并且在其中嵌入使用fragment了。
+    *获得Manager的方式也不同
+    *3.0以下：getSupportFragmentManager()
+    *3.0以上：getFragmentManager()
+    * Android是在Android 3.0 (API level 11)开始引入Fragment的。
+    * 可以把Fragment想成Activity中的模块，这个模块有自己的布局，有自己的生命周期，
+    * 单独处理自己的输入，在Activity运行的时候可以加载或者移除Fragment模块。
+    * 可以把Fragment设计成可以在多个Activity中复用的模块。
+    * 当开发的应用程序同时适用于平板电脑和手机时，可以利用Fragment实现灵活的布局，改善用户体验。
+    */
     private ResideMenu resideMenu;
     private MenuActivity mContext;
     private ResideMenuItem itemHome;
@@ -20,7 +33,7 @@ public class MenuActivity extends FragmentActivity implements View.OnClickListen
     private ResideMenuItem itemSettings;
 
     /**
-     * Called when the activity is first created.
+     * 第一次被创建时调用活动.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,21 +47,21 @@ public class MenuActivity extends FragmentActivity implements View.OnClickListen
 
     private void setUpMenu() {
 
-        // attach to current activity;
+        // 附加到当前活动;
         resideMenu = new ResideMenu(this);
         resideMenu.setUse3D(true);
         resideMenu.setBackground(R.drawable.menu_background);
         resideMenu.attachToActivity(this);
         resideMenu.setMenuListener(menuListener);
-        //valid scale factor is between 0.0f and 1.0f. leftmenu'width is 150dip. 
+        //有效比例因子在0.0f和1.0f之间。leftmenu 宽度 150下降.
         resideMenu.setScaleValue(0.6f);
 
-        // create menu items;
+        // 创建菜单项;
         itemHome     = new ResideMenuItem(this, R.drawable.icon_home,     "Home");
         itemProfile  = new ResideMenuItem(this, R.drawable.icon_profile,  "Profile");
         itemCalendar = new ResideMenuItem(this, R.drawable.icon_calendar, "Calendar");
         itemSettings = new ResideMenuItem(this, R.drawable.icon_settings, "Settings");
-
+        // 设置监听菜单项;
         itemHome.setOnClickListener(this);
         itemProfile.setOnClickListener(this);
         itemCalendar.setOnClickListener(this);
@@ -56,10 +69,10 @@ public class MenuActivity extends FragmentActivity implements View.OnClickListen
 
         resideMenu.addMenuItem(itemHome, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(itemProfile, ResideMenu.DIRECTION_LEFT);
-        resideMenu.addMenuItem(itemCalendar, ResideMenu.DIRECTION_RIGHT);
-        resideMenu.addMenuItem(itemSettings, ResideMenu.DIRECTION_RIGHT);
+        resideMenu.addMenuItem(itemCalendar, ResideMenu.DIRECTION_LEFT);
+        resideMenu.addMenuItem(itemSettings, ResideMenu.DIRECTION_LEFT);
 
-        // You can disable a direction by setting ->
+        // 您可以通过设置禁用一个方向 ->
         // resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);
 
         findViewById(R.id.title_bar_left_menu).setOnClickListener(new View.OnClickListener() {
@@ -74,8 +87,9 @@ public class MenuActivity extends FragmentActivity implements View.OnClickListen
                 resideMenu.openMenu(ResideMenu.DIRECTION_RIGHT);
             }
         });
-    }
 
+    }
+    //MotionEvent 手势事件
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         return resideMenu.dispatchTouchEvent(ev);
@@ -96,7 +110,7 @@ public class MenuActivity extends FragmentActivity implements View.OnClickListen
 
         resideMenu.closeMenu();
     }
-
+    //自定义的 监听
     private ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
         @Override
         public void openMenu() {
@@ -118,8 +132,11 @@ public class MenuActivity extends FragmentActivity implements View.OnClickListen
                 .commit();
     }
 
-    // What good method is to access resideMenu？
+    // 访问resideMenu有什么好方法？
     public ResideMenu getResideMenu(){
         return resideMenu;
     }
+
+
+
 }

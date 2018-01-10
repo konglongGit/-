@@ -83,9 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void query(View view){
-       String string = "create table contactinfo8 (id integer primary key autoincrement, name varchar(20), phone varchar(20),sex varchar(20), age varchar(20))";
-        mDao.createTable(string);
-      /*  String name=mEtName.getText().toString().trim();
+        String name=mEtName.getText().toString().trim();
 
         if(TextUtils.isEmpty(name)){
             Toast.makeText(this,"填写不完整",Toast.LENGTH_SHORT).show();
@@ -97,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
-        */
     }
 
 }

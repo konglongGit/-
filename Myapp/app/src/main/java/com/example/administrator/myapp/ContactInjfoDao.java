@@ -101,7 +101,7 @@ public class ContactInjfoDao {
         return phone;
     }
 
-    public void createTable(String tableString){
+    public void createTable(String tableString,String tableName){
 
         int version = mMyDBHelper.getWritableDatabase().getVersion();
 
@@ -111,7 +111,7 @@ public class ContactInjfoDao {
         while(cursor.moveToNext()){
             //遍历出表名
             String name = cursor.getString(0);
-            if (name.equals("contactinfo8")) has = true;
+            if (name.equals("tableName")) has = true;
             Log.i("System.out", name);
         }
         if (has) return;

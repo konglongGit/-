@@ -37,15 +37,13 @@ public class ListActivity extends AppCompatActivity {
         List<Map<String, Object>> listems = new ArrayList<Map<String, Object>>();
         for (int i = 0; i < list1.size(); i++) {
             Map<String, Object> listem = new HashMap<String, Object>();
-            listem.put("head", list1.get(i));
             listem.put("name", list1.get(i));
-            listem.put("desc", list1.get(i));
             listems.add(listem);
         }
 
         SimpleAdapter simplead = new SimpleAdapter(this, listems,
-                R.layout.list_item, new String[] { "name", "head", "desc" },
-                new int[] {R.id.name,R.id.head,R.id.desc});
+                R.layout.addtablelist_item, new String[] {"name"},
+                new int[] {R.id.item_name});
 
         listview.setAdapter(simplead);
     }

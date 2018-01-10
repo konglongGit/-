@@ -15,9 +15,9 @@ import com.special.ResideMenu.R;
  */
 public class ResideMenuItem extends LinearLayout{
 
-    /** menu item  icon  */
+    /** 菜单项的图标  */
     private ImageView iv_icon;
-    /** menu item  title */
+    /** 菜单项名称 */
     private TextView tv_title;
 
     public ResideMenuItem(Context context) {
@@ -47,7 +47,7 @@ public class ResideMenuItem extends LinearLayout{
     }
 
     /**
-     * set the icon color;
+     * 设置图标的颜色;
      *
      * @param icon
      */
@@ -56,7 +56,7 @@ public class ResideMenuItem extends LinearLayout{
     }
 
     /**
-     * set the title with resource
+     * 用资源设置标题
      * ;
      * @param title
      */
@@ -65,7 +65,7 @@ public class ResideMenuItem extends LinearLayout{
     }
 
     /**
-     * set the title with string;
+     * 用字符串设置标题;
      *
      * @param title
      */

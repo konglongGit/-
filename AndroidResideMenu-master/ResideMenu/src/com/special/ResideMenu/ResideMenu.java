@@ -26,7 +26,12 @@ import java.util.List;
  * Mail: specialcyci@gmail.com
  */
 public class ResideMenu extends FrameLayout {
-
+    /**
+     * FrameLayout(框架布局).框架布局是最简单的布局形式。
+     *所有添加到这个布局中的视图都以层叠的方式显示。第一个添加的控件被放在最底层，
+     * 最后一个添加到框架布局中的视图显示在最顶层，上一层的控件会覆盖下一层的控件。
+     * 这种显示方式有些类似于堆栈。
+     */
     public static final int DIRECTION_LEFT = 0;
     public static final int DIRECTION_RIGHT = 1;
     private static final int PRESSED_MOVE_HORIZONTAL = 2;
@@ -42,22 +47,22 @@ public class ResideMenu extends FrameLayout {
     private View scrollViewRightMenu;
     private View scrollViewMenu;
     /**
-     * Current attaching activity.
+     * 当前的附加活动.
      */
     private Activity activity;
     /**
-     * The DecorView of current activity.
+     * 当前活动的装饰视图.
      */
     private ViewGroup viewDecor;
     private TouchDisableView viewActivity;
     /**
-     * The flag of menu opening status.
+     * 菜单打开状态的标志.
      */
     private boolean isOpened;
     private float shadowAdjustScaleX;
     private float shadowAdjustScaleY;
     /**
-     * Views which need stop to intercept touch events.
+     * 需要停止拦截触摸事件的视图.
      */
     private List<View> ignoredViews;
     private List<ResideMenuItem> leftMenuItems;
@@ -69,7 +74,7 @@ public class ResideMenu extends FrameLayout {
     private int scaleDirection = DIRECTION_LEFT;
     private int pressedState = PRESSED_DOWN;
     private List<Integer> disabledSwipeDirection = new ArrayList<Integer>();
-    // Valid scale factor is between 0.0f and 1.0f.
+    // 有效比例因子在0.0f和1.0f之间.
     private float mScaleValue = 0.5f;
 
     private boolean mUse3D;
@@ -81,9 +86,9 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * This constructor provides you to create menus with your own custom
-     * layouts, but if you use custom menu then do not call addMenuItem because
-     * it will not be able to find default views
+     * 这个构造函数为您提供了使用自定义布局创建菜单的功能
+     * 但是如果您使用自定义菜单，那么就不要调用addMenuItem，
+     * 因为它将无法找到默认视图。
      */
     public ResideMenu(Context context, int customLeftMenuId,
                       int customRightMenuId) {
@@ -122,14 +127,14 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * Returns left menu view so you can findViews and do whatever you want with
+     * 返回左侧菜单视图，这样您就可以找到视图并做任何您想做的事情
      */
     public View getLeftMenuView() {
         return scrollViewLeftMenu;
     }
 
     /**
-     * Returns right menu view so you can findViews and do whatever you want with
+     * 返回正确的菜单视图，这样你就可以找到视图并做任何你想做的事情
      */
     public View getRightMenuView() {
         return scrollViewRightMenu;
@@ -137,13 +142,11 @@ public class ResideMenu extends FrameLayout {
 
     @Override
     protected boolean fitSystemWindows(Rect insets) {
-        // Applies the content insets to the view's padding, consuming that
-        // content (modifying the insets to be 0),
-        // and returning true. This behavior is off by default and can be
-        // enabled through setFitsSystemWindows(boolean)
-        // in api14+ devices.
+        // 将内容插入到视图的填充中，使用该内容(修改insets为0)
+        // 并返回true。这种行为是默认的，可以通过api14+设备中的
+        // setFitsSystemWindows(boolean)启用
 
-        // This is added to fix soft navigationBar's overlapping to content above LOLLIPOP
+            // 这被添加到fix soft navigationBar与LOLLIPOP之上的内容重叠
         int bottomPadding = viewActivity.getPaddingBottom() + insets.bottom;
         boolean hasBackKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
         boolean hasHomeKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_HOME);
@@ -169,7 +172,7 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * Set up the activity;
+     * 设置活动;
      *
      * @param activity
      */
@@ -209,7 +212,7 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * Set the background image of menu;
+     * 设置菜单的背景图像;
      *
      * @param imageResource
      */
@@ -218,7 +221,7 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * The visibility of the shadow under the activity;
+     * 活动中阴影的可见性;
      *
      * @param isVisible
      */
@@ -230,9 +233,9 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * Add a single item to the left menu;
+     * 在左侧菜单中添加一个项目;
      * <p/>
-     * WARNING: It will be removed from v2.0.
+     * 警告:它将从v2.0中删除.
      *
      * @param menuItem
      */
@@ -243,7 +246,7 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * Add a single items;
+     * 添加一项;
      *
      * @param menuItem
      * @param direction
@@ -259,7 +262,7 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * WARNING: It will be removed from v2.0.
+     * 警告:它将从v2.0中删除.
      *
      * @param menuItems
      */
@@ -270,7 +273,7 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * Set menu items by a array;
+     * 通过数组设置菜单项;
      *
      * @param menuItems
      * @param direction
@@ -298,7 +301,7 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * WARNING: It will be removed from v2.0.
+     * 警告:它将从v2.0中删除.
      *
      * @return
      */
@@ -308,7 +311,7 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * Return instances of menu items;
+     * 返回菜单项的实例;
      *
      * @return
      */
@@ -320,8 +323,8 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * If you need to do something on closing or opening menu,
-     * set a listener here.
+     * 如果您需要在关闭或打开菜单上做一些事情,
+     * 设置一个侦听器.
      *
      * @return
      */
@@ -335,7 +338,7 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * Show the menu;
+     * 显示菜单;
      */
     public void openMenu(int direction) {
 
@@ -353,7 +356,7 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * Close the menu;
+     * 关闭菜单;
      */
     public void closeMenu() {
 
@@ -402,7 +405,7 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * return the flag of menu status;
+     * 返回菜单状态的标志;
      *
      * @return
      */
@@ -455,7 +458,7 @@ public class ResideMenu extends FrameLayout {
     };
 
     /**
-     * A helper method to build scale down animation;
+     * 一个辅助方法来构建缩放动画;
      *
      * @param target
      * @param targetScaleX
@@ -482,7 +485,7 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * A helper method to build scale up animation;
+     * 一个辅助方法来建立规模的动画;
      *
      * @param target
      * @param targetScaleX
@@ -517,9 +520,8 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * If there were some view you don't want reside menu
-     * to intercept their touch event, you could add it to
-     * ignored views.
+     * 如果有一些视图不需要驻留菜单来拦截它们的触摸事件，
+     * 您可以将其添加到忽略的视图.
      *
      * @param v
      */
@@ -528,7 +530,7 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * Remove a view from ignored views;
+     * 从被忽略的视图中删除视图;
      *
      * @param v
      */
@@ -537,15 +539,15 @@ public class ResideMenu extends FrameLayout {
     }
 
     /**
-     * Clear the ignored view list;
+     * 清除忽略的视图列表;
      */
     public void clearIgnoredViewList() {
         ignoredViews.clear();
     }
 
     /**
-     * If the motion event was relative to the view
-     * which in ignored view list,return true;
+     * 如果运动事件相对于在被忽略的视图列表中的视图，
+     * 则返回true;
      *
      * @param ev
      * @return
@@ -686,12 +688,12 @@ public class ResideMenu extends FrameLayout {
     public interface OnMenuListener {
 
         /**
-         * This method will be called at the finished time of opening menu animations.
+         * 这个方法将在打开菜单动画的完成时间被调用.
          */
         public void openMenu();
 
         /**
-         * This method will be called at the finished time of closing menu animations.
+         * 此方法将在结束菜单动画结束时调用.
          */
         public void closeMenu();
     }
